@@ -1,45 +1,31 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<link rel="stylesheet" href="style.css">
-	<title>Form Login</title>
+<link rel="stylesheet" href="style.css">
+	<title>Admin</title>
 </head>
-<body background="img/wfbkl.png">
+<body background="wfbkl.png">
 <div align="center">
-<div class="badan" style="height:300px;width:35%;background-color:gray;">
-	<h2>Silahkan Masukkan Username dan Password dibawah</h2>
-	<br/>
-	<!-- cek pesan notifikasi -->
+<div class="badan" style="height:700px;width:500px;background-color:gray;">
+	<h2>Informasi Admin</h2>
+
+	<!-- cek apakah sudah login -->
 	<?php 
-	if(isset($_GET['pesan'])){
-		if($_GET['pesan'] == "gagal"){
-			echo "Login gagal! username dan password salah!";
-		}else if($_GET['pesan'] == "logout"){
-			echo "Anda telah berhasil logout";
-		}else if($_GET['pesan'] == "belum_login"){
-			echo "Anda harus login untuk mengakses halaman admin";
-		}
+	session_start();
+	if($_SESSION['status']!="login"){
+		header("location:../index.php?pesan=belum_login");
 	}
 	?>
-	<form method="post" action="cek_login.php">
-		<table>
-			<tr>
-				<td>Username</td>
-				<td>:</td>
-				<td><input type="text" name="username" placeholder="Masukkan username"></td>
-			</tr>
-			<tr>
-				<td>Password</td>
-				<td>:</td>
-				<td><input type="password" name="password" placeholder="Masukkan password"></td>
-			</tr>
-			<tr>
-				<td></td>
-				<td></td>
-				<td><input type="submit" value="LOGIN"></td>
-			</tr>
-		</table>			
-	</form>
-	</div></div>
+<img src="ego.jpg" alt="ego">
+<div align="left" style="padding-left:24px;">
+<p>Nama	: Ego Prabowo<br>
+NPM : 1660100170<br>
+Kelas : 6 D<br>
+Username : <?php echo $_SESSION['username']; ?></p></div>
+
+	<br/>
+	<br/>
+	<pre><a href="https://fb.me/izo165" target="_blank">FACEBOOK</a>		<a href="logout.php">LOGOUT</a></pre>
+</div></div>
 </body>
 </html>
